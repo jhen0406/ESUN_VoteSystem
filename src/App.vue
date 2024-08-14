@@ -1,10 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Header from"./components/Header.vue"
+
 </script>
 
 <template>
-  <div class="header">
+  <div class="header"  v-if="!$route.meta.noHeader">
     <Header />
   </div>
 
@@ -14,6 +15,6 @@ import Header from"./components/Header.vue"
 <style scoped lang="scss">
 .header {
   width: 100dvw;
-  height: 20dvh;
+  height: 15dvh;
 }
 </style>

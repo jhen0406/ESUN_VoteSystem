@@ -49,7 +49,7 @@ export default {
     logout(){
         this.loginObj.userName === "";
         this.loginObj.userId === "";
-    }
+    },
   },
   created(){
     this.logout();
@@ -59,6 +59,7 @@ export default {
 
 <template>
   <div class="adminHeaderArea" v-if="adminRoute">
+    <img src="/src/assets/photo/圖片1" alt="">
     <RouterLink to="/" >切換使用者</RouterLink>
     <!-- <RouterLink to="/managePage">投票項目總覽</RouterLink> -->
     <RouterLink to="/manageVote">管理投票項目</RouterLink>
@@ -69,6 +70,7 @@ export default {
     <span v-else></span>
     <button @click="this.login()"><i class="fa-solid fa-user"></i></button>
   </div>
+  <div class="" v-else></div>
   <editModal v-if="this.editModal" @alertModal="this.login()">
     <!--這個'slotModal'-->
     <template v-slot:header>
@@ -87,4 +89,11 @@ export default {
   </editModal>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+*{
+  background-color: transparent;
+}
+.adminHeaderArea{
+  
+}
+</style>
