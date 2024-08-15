@@ -130,6 +130,10 @@ export default {
       // 更新投票項目的彈跳視窗的開關
       this.editModal = !this.editModal;
     },
+    clearAndSearch() {
+      this.voteName = "";
+      this.search();
+    },
   },
   created() {
     this.search();

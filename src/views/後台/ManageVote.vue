@@ -93,7 +93,7 @@ export default {
       let deleteObj = {
         id_list: this.deleteCheckbox, // 被勾選的問卷形成新編號列表
       };
-      if (deleteObj) {
+      if (!this.deleteCheckbox) {
         if (confirm("確定刪除？")) {
           console.log(deleteObj);
           if (this.deleteCheckbox.length > 0) {
@@ -126,8 +126,10 @@ export default {
         } else{
           console.log("用戶選擇取消");
           this.deleteCheckbox = [];
+        } 
+      }else{
+          alert("請勾選欲刪除的問卷")
         }
-      }
     },
     createOrUpdate(isCreate = false) {
       // 判斷現在要更新還是新增
