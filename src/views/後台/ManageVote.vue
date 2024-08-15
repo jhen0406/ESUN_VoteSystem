@@ -93,34 +93,41 @@ export default {
       let deleteObj = {
         id_list: this.deleteCheckbox, // 被勾選的問卷形成新編號列表
       };
-      console.log(deleteObj);
-      if (this.deleteCheckbox.length > 0) {
-        this.voteList = this.voteList.filter(
-          // 扣除被勾選的問卷成為新的問卷陣列
-          (item) => !this.deleteCheckbox.includes(item.id)
-        );
-        console.log(this.voteList);
-        fetch("http://localhost:8080/vote/delete", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(deleteObj),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            alert("已刪除問卷");
-          })
-          .catch((error) => {
-            console.error("error", error);
-            alert("發生錯誤，請稍後重試");
-            return;
-          });
-      } else {
-        alert("請勾選欲刪除的問卷");
+      if (deleteObj) {
+        if (confirm("確定刪除？")) {
+          console.log(deleteObj);
+          if (this.deleteCheckbox.length > 0) {
+            this.voteList = this.voteList.filter(
+              // 扣除被勾選的問卷成為新的問卷陣列
+              (item) => !this.deleteCheckbox.includes(item.id)
+            );
+            console.log(this.voteList);
+            fetch("http://localhost:8080/vote/delete", {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(deleteObj),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                alert("已刪除問卷");
+              })
+              .catch((error) => {
+                console.error("error", error);
+                alert("發生錯誤，請稍後重試");
+                return;
+              });
+          } else {
+            alert("請勾選欲刪除的問卷");
+          }
+          this.deleteCheckbox = [];
+        } else{
+          console.log("用戶選擇取消");
+          this.deleteCheckbox = [];
+        }
       }
-      this.deleteCheckbox = [];
     },
     createOrUpdate(isCreate = false) {
       // 判斷現在要更新還是新增
@@ -156,8 +163,9 @@ export default {
             this.voteList.push(creatObj);
             this.addVoteName = "";
             this.addVoteIntro = "";
-          } else {this.showEdit();}
-            
+          } else {
+            this.showEdit();
+          }
         })
         .catch((error) => {
           console.error("error", error);
@@ -205,7 +213,7 @@ export default {
       const startPage = (this.currentPage - 1) * this.itemsPerPage;
       const endPage = startPage + this.itemsPerPage;
       // slice : 從 voteList 中提取從 startPage 到 endPage 的數據，但不包含 endPage
-      console.log(this.voteList.slice(startPage, endPage))
+      console.log(this.voteList.slice(startPage, endPage));
       return this.voteList.slice(startPage, endPage);
     },
     calPages() {
@@ -606,7 +614,7 @@ export default {
   bottom: 10px;
   left: 333px;
   background: #bbbbbb;
-  &:hover{
+  &:hover {
     cursor: pointer;
     background-color: #898989;
   }

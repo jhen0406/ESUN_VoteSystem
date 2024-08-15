@@ -112,6 +112,8 @@ export default {
             this.showEdit();
           } else if (data.message === "Duplicated Fill in") {
             alert("同一員工只能投票一次");
+          } else if(data.status === 400){
+            alert("請先登入");
           }
         })
         .catch((error) => {
@@ -139,25 +141,6 @@ export default {
 
 <template>
   <div class="bg">
-    <!-- <table class="vote">
-      <thead>
-        <th scope="col" class="thead">項目編號</th>
-        <th scope="col" class="thead">投票項目</th>
-        <th scope="col" class="thead">累積票數</th>
-        <th scope="col" class="thead">點此投票</th>
-      </thead>
-      <tbody>
-        <tr class="content" v-for="(item, index) in this.countList">
-          <td>{{ index + 1 }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.count }}</td>
-          <td>
-            <input type="checkbox" v-model="this.idList" :value="item.id" />
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
-    <!-- ============================================ -->
     <div class="allVoteItem">
       <div
         class="cardArea"
@@ -180,19 +163,6 @@ export default {
                 height: 25px;
               "
             />
-            <!-- <div
-              class=""
-              style="
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                background-color: transparent;
-                margin-left: 200px;
-                margin-top: -34px;
-              "
-            > -->
-
-            <!-- </div> -->
           </div>
         </div>
       </div>
