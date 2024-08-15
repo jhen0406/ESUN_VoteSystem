@@ -140,7 +140,7 @@ export default {
         console.log("目前登入員工資料", this.loginObj);
         this.userName = "";
         this.userId = "";
-        this.login();
+        this.showEdit();
       }
     },
   },

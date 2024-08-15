@@ -179,7 +179,7 @@ export default {
 <style scoped lang="scss">
 .bg {
   background-color: #d8e7e799;
-  // height: 100vh;
+  // height: 100vw;
 }
 .allVoteItem {
   display: flex;
